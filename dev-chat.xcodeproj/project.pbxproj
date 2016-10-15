@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		AFA8440F1DA6EFBB00171FB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA8440E1DA6EFBB00171FB5 /* AppDelegate.swift */; };
-		AFA844111DA6EFBB00171FB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA844101DA6EFBB00171FB5 /* ViewController.swift */; };
+		AFA844111DA6EFBB00171FB5 /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA844101DA6EFBB00171FB5 /* CameraVC.swift */; };
 		AFA844141DA6EFBB00171FB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFA844121DA6EFBB00171FB5 /* Main.storyboard */; };
 		AFA844161DA6EFBB00171FB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFA844151DA6EFBB00171FB5 /* Assets.xcassets */; };
 		AFA844191DA6EFBB00171FB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFA844171DA6EFBB00171FB5 /* LaunchScreen.storyboard */; };
 		AFA844241DA6EFBB00171FB5 /* dev_chatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA844231DA6EFBB00171FB5 /* dev_chatTests.swift */; };
 		AFA8442F1DA6EFBB00171FB5 /* dev_chatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA8442E1DA6EFBB00171FB5 /* dev_chatUITests.swift */; };
+		AFA8443E1DA6F46D00171FB5 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA8443C1DA6F46D00171FB5 /* PreviewView.swift */; };
+		AFA8443F1DA6F46D00171FB5 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA8443D1DA6F46D00171FB5 /* CameraViewController.swift */; };
+		AFA844411DA6F49B00171FB5 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA844401DA6F49B00171FB5 /* PhotoCaptureDelegate.swift */; };
+		AFFFF3751DAD62FF0067D536 /* CameraViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFFF3741DAD62FF0067D536 /* CameraViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,7 @@
 /* Begin PBXFileReference section */
 		AFA8440B1DA6EFBB00171FB5 /* dev-chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dev-chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFA8440E1DA6EFBB00171FB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AFA844101DA6EFBB00171FB5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AFA844101DA6EFBB00171FB5 /* CameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
 		AFA844131DA6EFBB00171FB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AFA844151DA6EFBB00171FB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFA844181DA6EFBB00171FB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +51,10 @@
 		AFA8442A1DA6EFBB00171FB5 /* dev-chatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "dev-chatUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFA8442E1DA6EFBB00171FB5 /* dev_chatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dev_chatUITests.swift; sourceTree = "<group>"; };
 		AFA844301DA6EFBB00171FB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFA8443C1DA6F46D00171FB5 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		AFA8443D1DA6F46D00171FB5 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		AFA844401DA6F49B00171FB5 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
+		AFFFF3741DAD62FF0067D536 /* CameraViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +105,11 @@
 		AFA8440D1DA6EFBB00171FB5 /* dev-chat */ = {
 			isa = PBXGroup;
 			children = (
+				AFFFF3731DAD62D00067D536 /* Protocols */,
+				AFA844431DA6F4BF00171FB5 /* Controller */,
+				AFA844421DA6F4A900171FB5 /* View */,
+				AFA844401DA6F49B00171FB5 /* PhotoCaptureDelegate.swift */,
 				AFA8440E1DA6EFBB00171FB5 /* AppDelegate.swift */,
-				AFA844101DA6EFBB00171FB5 /* ViewController.swift */,
 				AFA844121DA6EFBB00171FB5 /* Main.storyboard */,
 				AFA844151DA6EFBB00171FB5 /* Assets.xcassets */,
 				AFA844171DA6EFBB00171FB5 /* LaunchScreen.storyboard */,
@@ -123,6 +134,31 @@
 				AFA844301DA6EFBB00171FB5 /* Info.plist */,
 			);
 			path = "dev-chatUITests";
+			sourceTree = "<group>";
+		};
+		AFA844421DA6F4A900171FB5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AFA8443C1DA6F46D00171FB5 /* PreviewView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		AFA844431DA6F4BF00171FB5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AFA844101DA6EFBB00171FB5 /* CameraVC.swift */,
+				AFA8443D1DA6F46D00171FB5 /* CameraViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		AFFFF3731DAD62D00067D536 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				AFFFF3741DAD62FF0067D536 /* CameraViewControllerDelegate.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +298,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFA844111DA6EFBB00171FB5 /* ViewController.swift in Sources */,
+				AFA844111DA6EFBB00171FB5 /* CameraVC.swift in Sources */,
+				AFA8443F1DA6F46D00171FB5 /* CameraViewController.swift in Sources */,
 				AFA8440F1DA6EFBB00171FB5 /* AppDelegate.swift in Sources */,
+				AFA844411DA6F49B00171FB5 /* PhotoCaptureDelegate.swift in Sources */,
+				AFFFF3751DAD62FF0067D536 /* CameraViewControllerDelegate.swift in Sources */,
+				AFA8443E1DA6F46D00171FB5 /* PreviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +554,7 @@
 				AFA844351DA6EFBB00171FB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFA844361DA6EFBB00171FB5 /* Build configuration list for PBXNativeTarget "dev-chatTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +563,7 @@
 				AFA844381DA6EFBB00171FB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFA844391DA6EFBB00171FB5 /* Build configuration list for PBXNativeTarget "dev-chatUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +572,7 @@
 				AFA8443B1DA6EFBB00171FB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
