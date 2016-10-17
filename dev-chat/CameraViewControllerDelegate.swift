@@ -9,8 +9,9 @@
 import Foundation
 
 protocol  CameraViewControllerDelegate {
-    func shouldEnableCameraButton (enabled: Bool)
+    func shouldEnableSwitchCameraButton (enabled: Bool)
     func shouldEnableRecordButton (enabled: Bool)
+    func shouldEnablePhotoButton (enabled: Bool)
     func canStopRecording()
     func canStartRecording()
 }

@@ -11,8 +11,9 @@ import UIKit
 class CameraVC: CameraViewController, CameraViewControllerDelegate{
 
     @IBOutlet weak var previewView: PreviewView!
-    @IBOutlet weak var recordBtn: UIButton!
-    @IBOutlet weak var changeCameraBtn: UIButton!
+    @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var switchCameraButton: UIButton!
+    @IBOutlet weak var photoButton: UIButton!
     
     override func viewDidLoad() {
         delegate = self
@@ -26,23 +27,32 @@ class CameraVC: CameraViewController, CameraViewControllerDelegate{
         
     }
     
-    @IBAction func recordBrnPressed(_ sender: UIButton) {
+    @IBAction func recordButtonPressed(_ sender: UIButton) {
         toggleMovieRecording(sender)
     }
     
-    
-    @IBAction func changeCameraBrnPressed(_ sender: UIButton) {
+    @IBAction func switchCameraButtonPressed(_ sender: UIButton) {
         changeCamera(sender)
     }
     
-    func shouldEnableCameraButton(enabled: Bool) {
-        changeCameraBtn.isEnabled = enabled
-        print("Should enable Camera Button: \(enabled)")
+    @IBAction func photoButtonPressed(_ sender: UIButton) {
+        capturePhoto(sender)
+    }
+    
+    
+    func shouldEnableSwitchCameraButton(enabled: Bool) {
+        switchCameraButton.isEnabled = enabled
+        print("Should enable switchCameraButton: \(enabled)")
     }
     
     func shouldEnableRecordButton(enabled: Bool) {
-        recordBtn.isEnabled = enabled
-        print("Should enable Record Button: \(enabled)")
+        recordButton.isEnabled = enabled
+        print("Should enable recordButton: \(enabled)")
+    }
+    
+    func shouldEnablePhotoButton(enabled: Bool) {
+        photoButton.isEnabled = enabled
+        print("Should enable pictureButton: \(enabled)")
     }
     
     func canStopRecording() {

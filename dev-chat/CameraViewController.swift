@@ -20,9 +20,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 		super.viewDidLoad()
 		
 		// Disable UI. The UI is enabled if and only if the session starts running.
-		delegate?.shouldEnableCameraButton(enabled: false)//cameraButton.isEnabled = false
+		delegate?.shouldEnableSwitchCameraButton(enabled: false)//cameraButton.isEnabled = false
 		delegate?.shouldEnableRecordButton(enabled: false)//recordButton.isEnabled = false
-        photoButton?.isEnabled = false
+        delegate?.shouldEnablePhotoButton(enabled: false)// photoButton?.isEnabled = false
 		livePhotoModeButton?.isEnabled = false
 		captureModeControl?.isEnabled = false
 		
@@ -381,9 +381,9 @@ weak var captureModeControl: UISegmentedControl?
 	
 //	@IBAction private func changeCamera(_ cameraButton: UIButton) {
     @IBAction func changeCamera(_ cameraButton: UIButton) {
-		delegate?.shouldEnableCameraButton(enabled: false)
+		delegate?.shouldEnableSwitchCameraButton(enabled: false)
 		delegate?.shouldEnableRecordButton(enabled: false)
-		photoButton?.isEnabled = false
+		delegate?.shouldEnablePhotoButton(enabled: false)//photoButton?.isEnabled = false
 		livePhotoModeButton?.isEnabled = false
 		captureModeControl?.isEnabled = false
 		
@@ -458,9 +458,9 @@ weak var captureModeControl: UISegmentedControl?
 			}
 			
 			DispatchQueue.main.async { [unowned self] in
-				self.delegate?.shouldEnableCameraButton(enabled: true)
+				self.delegate?.shouldEnableSwitchCameraButton(enabled: true)
 				self.delegate?.shouldEnableRecordButton(enabled: self.movieFileOutput != nil)
-				self.photoButton?.isEnabled = true
+				self.delegate?.shouldEnablePhotoButton(enabled: true)// self.photoButton?.isEnabled = true
 				self.livePhotoModeButton?.isEnabled = true
 				self.captureModeControl?.isEnabled = true
 			}
@@ -509,7 +509,7 @@ weak var captureModeControl: UISegmentedControl?
 	private var inProgressPhotoCaptureDelegates = [Int64 : PhotoCaptureDelegate]()
 	
 //	@IBOutlet private weak var photoButton: UIButton!
-    weak var photoButton: UIButton?
+    //weak var photoButton: UIButton?
 	
 	@IBAction func capturePhoto(_ photoButton: UIButton) {
 		/*
@@ -645,7 +645,7 @@ weak var captureModeControl: UISegmentedControl?
 		
 			See the AVCaptureFileOutputRecordingDelegate methods.
 		*/
-		delegate?.shouldEnableCameraButton(enabled: false)
+		delegate?.shouldEnableSwitchCameraButton(enabled: false)
 		recordButton.isEnabled = false
 		captureModeControl?.isEnabled = false
 		
@@ -761,7 +761,7 @@ weak var captureModeControl: UISegmentedControl?
 		// Enable the Camera and Record buttons to let the user switch camera and start another recording.
 		DispatchQueue.main.async { [unowned self] in
 			// Only enable the ability to change camera if the device has more than one camera.
-			self.delegate?.shouldEnableCameraButton(enabled: self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1)
+			self.delegate?.shouldEnableSwitchCameraButton(enabled: self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1)
 			self.delegate?.shouldEnableRecordButton(enabled: true)
 			self.captureModeControl?.isEnabled = true
 			self.delegate?.canStartRecording()		}
@@ -803,9 +803,9 @@ weak var captureModeControl: UISegmentedControl?
 			
 			DispatchQueue.main.async { [unowned self] in
 				// Only enable the ability to change camera if the device has more than one camera.
-				self.delegate?.shouldEnableCameraButton(enabled: isSessionRunning && self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1 )
+				self.delegate?.shouldEnableSwitchCameraButton(enabled: isSessionRunning && self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1 )
 				self.delegate?.shouldEnableRecordButton(enabled: isSessionRunning && self.movieFileOutput != nil)
-				self.photoButton?.isEnabled = isSessionRunning
+				self.delegate?.shouldEnablePhotoButton(enabled: isSessionRunning)//self.photoButton?.isEnabled = isSessionRunning
 				self.captureModeControl?.isEnabled = isSessionRunning
 				self.livePhotoModeButton?.isEnabled = isSessionRunning && isLivePhotoCaptureEnabled
 				self.livePhotoModeButton?.isHidden = !(isSessionRunning && isLivePhotoCaptureSupported)
