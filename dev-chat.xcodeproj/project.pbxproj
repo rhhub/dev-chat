@@ -20,6 +20,8 @@
 		AFA8443E1DA6F46D00171FB5 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA8443C1DA6F46D00171FB5 /* PreviewView.swift */; };
 		AFA8443F1DA6F46D00171FB5 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA8443D1DA6F46D00171FB5 /* CameraViewController.swift */; };
 		AFA844411DA6F49B00171FB5 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA844401DA6F49B00171FB5 /* PhotoCaptureDelegate.swift */; };
+		AFF742F31DB69D060090AB75 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF742F21DB69D060090AB75 /* LoginViewController.swift */; };
+		AFF742F61DB6A9E50090AB75 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF742F51DB6A9E50090AB75 /* AuthService.swift */; };
 		AFFE215C1DB53F4A00EEE656 /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFE215B1DB53F4A00EEE656 /* RoundTextField.swift */; };
 		AFFE215E1DB546D000EEE656 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFE215D1DB546D000EEE656 /* RoundedButton.swift */; };
 		AFFFF3751DAD62FF0067D536 /* CameraViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFFF3741DAD62FF0067D536 /* CameraViewControllerDelegate.swift */; };
@@ -64,6 +66,8 @@
 		AFA8443C1DA6F46D00171FB5 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		AFA8443D1DA6F46D00171FB5 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		AFA844401DA6F49B00171FB5 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
+		AFF742F21DB69D060090AB75 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AFF742F51DB6A9E50090AB75 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		AFFE215B1DB53F4A00EEE656 /* RoundTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundTextField.swift; sourceTree = "<group>"; };
 		AFFE215D1DB546D000EEE656 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		AFFFF3741DAD62FF0067D536 /* CameraViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 		AFA8440D1DA6EFBB00171FB5 /* dev-chat */ = {
 			isa = PBXGroup;
 			children = (
+				AFF742F41DB6A9D30090AB75 /* Services */,
 				AFFFF3731DAD62D00067D536 /* Protocols */,
 				AFA844431DA6F4BF00171FB5 /* Controller */,
 				AFA844421DA6F4A900171FB5 /* View */,
@@ -188,8 +193,17 @@
 			children = (
 				AFA844101DA6EFBB00171FB5 /* CameraVC.swift */,
 				AFA8443D1DA6F46D00171FB5 /* CameraViewController.swift */,
+				AFF742F21DB69D060090AB75 /* LoginViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		AFF742F41DB6A9D30090AB75 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AFF742F51DB6A9E50090AB75 /* AuthService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		AFFFF3731DAD62D00067D536 /* Protocols */ = {
@@ -479,12 +493,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFF742F31DB69D060090AB75 /* LoginViewController.swift in Sources */,
 				AFA844111DA6EFBB00171FB5 /* CameraVC.swift in Sources */,
 				AFA8443F1DA6F46D00171FB5 /* CameraViewController.swift in Sources */,
 				AFA8440F1DA6EFBB00171FB5 /* AppDelegate.swift in Sources */,
 				AFFE215E1DB546D000EEE656 /* RoundedButton.swift in Sources */,
 				AFFE215C1DB53F4A00EEE656 /* RoundTextField.swift in Sources */,
 				AFA844411DA6F49B00171FB5 /* PhotoCaptureDelegate.swift in Sources */,
+				AFF742F61DB6A9E50090AB75 /* AuthService.swift in Sources */,
 				AFFFF3751DAD62FF0067D536 /* CameraViewControllerDelegate.swift in Sources */,
 				AFA8443E1DA6F46D00171FB5 /* PreviewView.swift in Sources */,
 			);

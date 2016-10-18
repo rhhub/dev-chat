@@ -74,16 +74,17 @@
                         <outlet property="previewView" destination="hgP-CH-UBu" id="CIe-L5-vEL"/>
                         <outlet property="recordButton" destination="krW-dj-tjz" id="lvM-5y-fp1"/>
                         <outlet property="switchCameraButton" destination="6cI-xS-Www" id="Ybp-QU-0bS"/>
+                        <segue destination="rny-8o-AQw" kind="presentation" identifier="LoginViewController" id="6BR-9v-cqf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="24.800000000000001" y="35.532233883058474"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="3HQ-Fv-SEP">
             <objects>
-                <viewController id="rny-8o-AQw" sceneMemberID="viewController">
+                <viewController id="rny-8o-AQw" customClass="LoginViewController" customModule="dev_chat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zbe-S3-xLl"/>
                         <viewControllerLayoutGuide type="bottom" id="53A-aC-E4k"/>
@@ -176,6 +177,9 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="rny-8o-AQw" eventType="touchUpInside" id="8ee-Yy-nDb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -200,6 +204,10 @@
                             <constraint firstItem="KsJ-6t-6aN" firstAttribute="centerX" secondItem="15a-5T-FxP" secondAttribute="centerX" id="y0K-Zh-eMS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="vbv-wk-1Vc" id="9lu-CW-ZYg"/>
+                        <outlet property="passwordField" destination="w4k-UI-LTy" id="ONb-16-ZC6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QKC-V4-Uml" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
