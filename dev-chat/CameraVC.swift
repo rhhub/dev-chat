@@ -30,6 +30,8 @@ class CameraVC: CameraViewController, CameraViewControllerDelegate{
     
     override func viewDidAppear(_ animated: Bool) {
         
+        
+        
         guard FIRAuth.auth()?.currentUser != nil else {
             // load login vc
             performSegue(withIdentifier: "LoginViewController", sender: nil)
@@ -49,7 +51,7 @@ class CameraVC: CameraViewController, CameraViewControllerDelegate{
         capturePhoto(sender)
     }
     
-    
+    // CameraViewControllerDelegate
     func shouldEnableSwitchCameraButton(enabled: Bool) {
         switchCameraButton.isEnabled = enabled
         print("Should enable switchCameraButton: \(enabled)")
@@ -71,6 +73,33 @@ class CameraVC: CameraViewController, CameraViewControllerDelegate{
     
     func canStartRecording() {
         print("Can start recording")
+    }
+    
+    func videoRecordingComplete(url: URL) {
+        performSegue(withIdentifier: "UsersViewController", sender: url)
+    }
+    
+    func videoRecordingFailed() {
+        
+    }
+    
+    func photoCaptureComplete(data: Data) {
+        performSegue(withIdentifier: "UsersViewController", sender: data)
+    }
+    
+    func photoCaptureFailed() {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let usersViewController = segue.destination as? UsersViewController {
+            
+            if let url = sender as? URL {
+                usersViewController.videoURL = url
+            } else if let data = sender as? Data {
+                usersViewController.photoData = data
+            }
+        }
     }
 }
 

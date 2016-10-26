@@ -524,7 +524,7 @@ weak var captureModeControl: UISegmentedControl?
 			if let photoOutputConnection = self.photoOutput.connection(withMediaType: AVMediaTypeVideo) {
 				photoOutputConnection.videoOrientation = videoPreviewLayerOrientation
 			}
-			
+            
 			// Capture a JPEG photo with flash set to auto and high resolution photo enabled.
 			let photoSettings = AVCapturePhotoSettings()
 			photoSettings.flashMode = .auto
@@ -573,14 +573,22 @@ weak var captureModeControl: UISegmentedControl?
 							}
 						}
 					}
-				}, completed: { [unowned self] photoCaptureDelegate in
+				}, completed: { [unowned self] (photoCaptureDelegate, data) in
+                    
+                    if let data = data {
+                        self.delegate?.photoCaptureComplete(data: data)
+                    } else {
+                        self.delegate?.photoCaptureFailed()
+                    }
+                    
 					// When the capture is complete, remove a reference to the photo capture delegate so it can be deallocated.
+                    
 					self.sessionQueue.async { [unowned self] in
 						self.inProgressPhotoCaptureDelegates[photoCaptureDelegate.requestedPhotoSettings.uniqueID] = nil
 					}
 				}
 			)
-			
+            
 			/*
 				The Photo Output keeps a weak reference to the photo capture delegate so
 				we store it in an array to maintain a strong reference to this object
@@ -588,8 +596,12 @@ weak var captureModeControl: UISegmentedControl?
 			*/
 			self.inProgressPhotoCaptureDelegates[photoCaptureDelegate.requestedPhotoSettings.uniqueID] = photoCaptureDelegate
 			self.photoOutput.capturePhoto(with: photoSettings, delegate: photoCaptureDelegate)
+            
+            
 		}
 	}
+    
+    
 	
 	private enum LivePhotoMode {
 		case on
@@ -729,32 +741,39 @@ weak var captureModeControl: UISegmentedControl?
 		if error != nil {
 			print("Movie file finishing error: \(error)")
 			success = (((error as NSError).userInfo[AVErrorRecordingSuccessfullyFinishedKey] as AnyObject).boolValue)!
+            delegate?.videoRecordingFailed()
 		}
 		
 		if success {
-			// Check authorization status.
-			PHPhotoLibrary.requestAuthorization { status in
-				if status == .authorized {
-					// Save the movie file to the photo library and cleanup.
-					PHPhotoLibrary.shared().performChanges({
-							let options = PHAssetResourceCreationOptions()
-							options.shouldMoveFile = true
-							let creationRequest = PHAssetCreationRequest.forAsset()
-							creationRequest.addResource(with: .video, fileURL: outputFileURL, options: options)
-						}, completionHandler: { success, error in
-							if !success {
-								print("Could not save movie to photo library: \(error)")
-							}
-							cleanup()
-						}
-					)
-				}
-				else {
-					cleanup()
-				}
-			}
+            
+            delegate?.videoRecordingComplete(url: outputFileURL)
+            // FIXME: cleanup() needs clean up but has to wait for upload to firebase to finish.
+            
+			// Check authorization status. Save video to disk.
+//			PHPhotoLibrary.requestAuthorization { status in
+//				if status == .authorized {
+//					// Save the movie file to the photo library and cleanup.
+//					PHPhotoLibrary.shared().performChanges({
+//							let options = PHAssetResourceCreationOptions()
+//							options.shouldMoveFile = true
+//							let creationRequest = PHAssetCreationRequest.forAsset()
+//							creationRequest.addResource(with: .video, fileURL: outputFileURL, options: options)
+//						}, completionHandler: { success, error in
+//							if !success {
+//								print("Could not save movie to photo library: \(error)")
+//							}
+//							cleanup()
+//						}
+//					)
+//				}
+//				else {
+//					cleanup()
+//				}
+//			}
+            
 		}
 		else {
+            delegate?.videoRecordingFailed()
 			cleanup()
 		}
 		

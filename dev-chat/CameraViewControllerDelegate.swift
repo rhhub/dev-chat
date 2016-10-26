@@ -14,4 +14,8 @@ protocol  CameraViewControllerDelegate {
     func shouldEnablePhotoButton (enabled: Bool)
     func canStopRecording()
     func canStartRecording()
+    func videoRecordingComplete (url: URL)
+    func videoRecordingFailed()
+    func photoCaptureComplete (data: Data)
+    func photoCaptureFailed()
 }

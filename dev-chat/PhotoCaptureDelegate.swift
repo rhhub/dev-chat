@@ -16,13 +16,13 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
 	
 	private let capturingLivePhoto: (Bool) -> ()
 	
-	private let completed: (PhotoCaptureDelegate) -> ()
+	private let completed: (PhotoCaptureDelegate, Data?) -> ()
 	
 	private var photoData: Data? = nil
 	
 	private var livePhotoCompanionMovieURL: URL? = nil
 
-	init(with requestedPhotoSettings: AVCapturePhotoSettings, willCapturePhotoAnimation: @escaping () -> (), capturingLivePhoto: @escaping (Bool) -> (), completed: @escaping (PhotoCaptureDelegate) -> ()) {
+	init(with requestedPhotoSettings: AVCapturePhotoSettings, willCapturePhotoAnimation: @escaping () -> (), capturingLivePhoto: @escaping (Bool) -> (), completed: @escaping (PhotoCaptureDelegate, Data?) -> ()) {
 		self.requestedPhotoSettings = requestedPhotoSettings
 		self.willCapturePhotoAnimation = willCapturePhotoAnimation
 		self.capturingLivePhoto = capturingLivePhoto
@@ -41,7 +41,7 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
 			}
 		}
 		
-		completed(self)
+		completed(self, photoData) // Returned data could be nil. Use optional to handle errors.
 	}
 	
 	func capture(_ captureOutput: AVCapturePhotoOutput, willBeginCaptureForResolvedSettings resolvedSettings: AVCaptureResolvedPhotoSettings) {
@@ -90,30 +90,33 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
 			return
 		}
 		
-		PHPhotoLibrary.requestAuthorization { [unowned self] status in
-			if status == .authorized {
-				PHPhotoLibrary.shared().performChanges({ [unowned self] in
-						let creationRequest = PHAssetCreationRequest.forAsset()
-						creationRequest.addResource(with: .photo, data: photoData, options: nil)
-					
-						if let livePhotoCompanionMovieURL = self.livePhotoCompanionMovieURL {
-							let livePhotoCompanionMovieFileResourceOptions = PHAssetResourceCreationOptions()
-							livePhotoCompanionMovieFileResourceOptions.shouldMoveFile = true
-							creationRequest.addResource(with: .pairedVideo, fileURL: livePhotoCompanionMovieURL, options: livePhotoCompanionMovieFileResourceOptions)
-						}
-					
-                    }, completionHandler: { [unowned self] success, error in
-						if let error = error {
-							print("Error occurered while saving photo to photo library: \(error)")
-						}
-						
-						self.didFinish()
-					}
-				)
-			}
-			else {
-				self.didFinish()
-			}
-		}
+        didFinish()
+        
+        // Save to photo library.
+//		PHPhotoLibrary.requestAuthorization { [unowned self] status in
+//			if status == .authorized {
+//				PHPhotoLibrary.shared().performChanges({ [unowned self] in
+//						let creationRequest = PHAssetCreationRequest.forAsset()
+//						creationRequest.addResource(with: .photo, data: photoData, options: nil)
+//					
+//						if let livePhotoCompanionMovieURL = self.livePhotoCompanionMovieURL {
+//							let livePhotoCompanionMovieFileResourceOptions = PHAssetResourceCreationOptions()
+//							livePhotoCompanionMovieFileResourceOptions.shouldMoveFile = true
+//							creationRequest.addResource(with: .pairedVideo, fileURL: livePhotoCompanionMovieURL, options: livePhotoCompanionMovieFileResourceOptions)
+//						}
+//					
+//                    }, completionHandler: { [unowned self] success, error in
+//						if let error = error {
+//							print("Error occurered while saving photo to photo library: \(error)")
+//						}
+//						
+//						self.didFinish()
+//					}
+//				)
+//			}
+//			else {
+//				self.didFinish()
+//			}
+//		}
 	}
 }

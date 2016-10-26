@@ -20,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
+        // Login Testing
+//        do {
+//            try FIRAuth.auth()?.signOut()
+//            print("User Signed Out")
+//        } catch {
+//            print("User not signed out")
+//        }
+        
         return true
     }
 
